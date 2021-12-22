@@ -1,0 +1,30 @@
+<div class="login-container">
+    <div class="login-window">
+        <div class="login-form-container">
+            <div class="sign-up-container">
+                <button mat-button routerLink="/auth/login" class="go-back-container"><img src="../../assets/img/Path.svg" alt=""> <span class="go-back"> Go Back</span> </button>
+                <p class="sign-up-link">Have an account? <a routerLink="/auth/login">Sign in</a> </p>
+            </div>
+            <div class="form-container">
+                <div>
+                    <p class="form-header">Sign up to Synapse Internship</p>
+                    <p class="form-text">Sign up on our platform</p>
+                </div>
+                <form [formGroup]="registerForm" >
+                    <input type="text" class="sign-in-input" placeholder="Username" formControlName="userName">
+                    <input type="text" class="sign-in-input" placeholder="Password" formControlName="userPassword">
+                    <input type="text" class="sign-in-input" placeholder="Confirm password" formControlName="userRePassword">
+                    <div class="terms-agree">
+                        <input type="checkbox" class="terms-checkbox" formControlName="userTerms">
+                        <p class="form-text">I have read the <b><u>Terms and Conditions</u></b></p>
+                    </div>
+                    <button mat-stroked-button (click)="registerUser(registerForm)">SIGN UP NOW</button>
+                </form>
+            </div>
+        </div>
+        <div class="login-pic">
+           
+        </div>
+    </div>
+</div>
+

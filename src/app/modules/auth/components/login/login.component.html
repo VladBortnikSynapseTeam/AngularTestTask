@@ -1,0 +1,23 @@
+<div class="login-container">
+    <div class="login-window">
+        <div class="login-form-container">
+            <div class="sign-up-container">
+                <p class="sign-up-link">Don`t have an account? <a routerLink="/auth/register"> Sign up</a></p>
+            </div>
+            <div class="form-container">
+                <div>
+                    <p class="form-header">Sign in to Synapse Internship</p>
+                    <p class="form-text">Sign in our platform</p>
+                </div>
+                <form action="GET" [formGroup]="loginForm">
+                    <input type="text" class="sign-in-input" placeholder="Username" formControlName="userName">
+                    <input type="text" class="sign-in-input" placeholder="Password" formControlName="userPassword">
+                    <button mat-stroked-button (click)="loginUser(loginForm)">SIGN IN</button>
+                </form>
+            </div>
+        </div>
+        <div class="login-pic">
+           
+        </div>
+    </div>
+</div>
