@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CustomValidators } from 'src/app/core/validators/custom-validators';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -8,15 +9,24 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({
-    username: new FormControl(),
-    password: new FormControl()
+    username: new FormControl("",Validators.minLength(6)),
+    password: new FormControl("",[
+      Validators.required,
+    CustomValidators.patternValidator(/[a-zA-Z]/,{noAlphabeticCharacters:true}),
+    CustomValidators.patternValidator(/[0-9]/,{noNumericCharacters: true}),
+    CustomValidators.patternValidator(/[!@\$%\^\&*\)\(+=._-]/,{noSpecialCharacters:true}),
+    Validators.minLength(8)
+    ])
   })
   constructor(private auth: AuthService) { }
   
   ngOnInit(): void {
   }
-  loginUser(loginForm: FormGroup){
+  loginUser(){
+   
+  }
+  checkValid(loginForm: FormGroup){
     const data = loginForm.value;
-    this.auth.loginUser(data).subscribe(data => console.log(data));
+    console.log(data)
   }
 }

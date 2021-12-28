@@ -14,6 +14,10 @@
   border-radius: 4px;
   display: flex;
 }
+.error-handler {
+  color: red;
+  font-size: 10px;
+}
 .login-pic {
   width: 473px;
   height: 100%;
@@ -29,6 +33,7 @@
   padding-top: 50px;
   gap: 70px;
 }
+
 .sign-up-container {
   width: 100%;
   display: flex;
@@ -65,12 +70,16 @@
 }
 .terms-agree {
   display: flex;
-  align-items: center;
+  flex-direction: column;
 }
 .terms-checkbox {
   width: 18px;
   height: 18px;
   background: #425a70;
+}
+.terms-pos {
+  display: flex;
+  align-items: center;
 }
 a {
   color: #9ea0a5;

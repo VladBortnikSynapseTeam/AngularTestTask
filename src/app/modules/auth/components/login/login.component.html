@@ -9,10 +9,30 @@
                     <p class="form-header">Sign in to Synapse Internship</p>
                     <p class="form-text">Sign in our platform</p>
                 </div>
-                <form action="GET" [formGroup]="loginForm">
-                    <input type="text" class="sign-in-input" placeholder="Username" formControlName="userName">
-                    <input type="text" class="sign-in-input" placeholder="Password" formControlName="userPassword">
-                    <button mat-stroked-button (click)="loginUser(loginForm)">SIGN IN</button>
+                <form action="GET" [formGroup]="loginForm" (submit)="checkValid(loginForm)">
+                    <input type="text" class="sign-in-input" placeholder="Username" formControlName="username">
+                    <div class="error-container">
+                        <div class="error-handler" *ngIf="!loginForm.controls['username'].value || loginForm.controls['username'].hasError('minlength')">
+                            Your username must be at least 6 characters
+                        </div>
+                    </div>
+                    
+                    <input type="text" class="sign-in-input" placeholder="Password" formControlName="password" type="password">
+                    <div class="error-container" >
+                        <div class="error-handler" *ngIf="!loginForm.controls['password'].value || loginForm.controls['password'].hasError('minlength')">
+                            Your password must ba at least 8 characters
+                        </div>
+                        <div class="error-handler" *ngIf="loginForm.controls['password'].hasError('noAlphabeticCharacters')">
+                            Your password must include an alphabetic character (A-Z)
+                        </div>
+                        <div class="error-handler" *ngIf="loginForm.controls['password'].hasError('noNumericCharacters')">
+                            Your password must include a numeric character (0-9)
+                        </div>
+                        <div class="error-handler" *ngIf="loginForm.controls['password'].hasError('noSpecialCharacters')">
+                            Your character must include a special character
+                        </div>
+                    </div>  
+                    <button mat-stroked-button  (submit)="checkValid(loginForm)" [disabled]="!loginForm.valid">SIGN IN</button>
                 </form>
             </div>
         </div>
