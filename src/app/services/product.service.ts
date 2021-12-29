@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable} from '@angular/core';
-import { IProduct } from '../core/interfaces/model';
-import { IReview } from '../core/interfaces/model';
+import { IPostReview, IProduct, IReview, IPostReviewResponse } from '../core/interfaces/model';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,5 +15,8 @@ export class ProductService {
   }
   getProductReview(id: string){
     return this.http.get<IReview[]>(`http://smktesting.herokuapp.com/api/reviews/${id}`)
+  }
+  postRate(data: IPostReview, postID: string){
+    return this.http.post(`http://smktesting.herokuapp.com/api/reviews/${postID}`, data)
   }
 }

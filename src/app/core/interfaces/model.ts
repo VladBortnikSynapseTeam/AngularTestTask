@@ -17,6 +17,13 @@ export interface IProduct{
  image: string;
 text: string;
 }
+export interface IPostReview{
+    rate: number;
+    text: string;
+}
+export interface IPostReviewResponse {
+    review_id: number;
+} 
 export interface IReview {
     created_at: string;
     created_by: {

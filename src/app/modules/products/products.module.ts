@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductService } from 'src/app/services/product.service';
 import { ProductPageComponent } from './components/product-page/product-page.component';
 import { ProductsComponent } from './components/products/products.component';
+import { ReactiveFormsModule } from '@angular/forms';
 const routes:Routes = [
   {path:"",component:ProductListComponent, children:[
     {path: "list/:id", component: ProductPageComponent},
@@ -21,6 +22,7 @@ const routes:Routes = [
     RouterModule.forChild(routes),
     SharedMaterialModuleModule,
     HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [ProductService]
 })
