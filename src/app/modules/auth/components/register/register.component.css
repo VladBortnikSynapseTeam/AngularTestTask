@@ -13,6 +13,7 @@
     0px 1px 3px rgba(63, 63, 68, 0.15);
   border-radius: 4px;
   display: flex;
+  overflow: auto;
 }
 .error-handler {
   color: red;

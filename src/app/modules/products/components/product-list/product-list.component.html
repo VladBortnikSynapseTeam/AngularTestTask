@@ -3,7 +3,7 @@
         <img src="../../assets/img/logo (1) 1.svg" alt="">
         <span>Synapse Internship</span>
     </span> 
-  <img routerLink="/auth/login" src="../../assets/img/exit_icon.svg" alt="" style="cursor: pointer;">
+  <img routerLink="/auth/login" src="../../assets/img/exit_icon.svg" alt="" style="cursor: pointer;" (click)="removeToken()">
 </mat-toolbar>
 <div class="product-list-container">
         <nav>
@@ -14,11 +14,11 @@
                 <p class="user-name">Synapse Team</p>
                 <div class="divider"></div>
             </div>
-            <button mat-stroked-button class="products-button" routerLink="/auth/login"><mat-icon class="shoping-icon">shopping_basket</mat-icon><span class="products-text">Products</span></button>
+            <button mat-stroked-button class="products-button" routerLink="/products/list"><mat-icon class="shoping-icon">shopping_basket</mat-icon><span class="products-text">Products</span></button>
         </nav>
         <div class="products-container">
             <div class="products">
-                
+                <router-outlet></router-outlet>
             </div>
         </div>
 </div>

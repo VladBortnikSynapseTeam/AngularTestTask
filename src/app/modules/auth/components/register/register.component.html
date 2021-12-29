@@ -10,16 +10,16 @@
                     <p class="form-header">Sign up to Synapse Internship</p>
                     <p class="form-text">Sign up on our platform</p>
                 </div>
-                <form [formGroup]="registerForm" (submit)="checkValid()">
+                <form [formGroup]="registerForm" (submit)="registerUser(registerForm)">
                     <input type="text" class="sign-in-input" placeholder="Username" formControlName="username">
-                    <div class="error-container" >
+                    <div class="error-container" *ngIf="registerForm.controls['username'].touched && !registerForm.controls['username'].valid" >
                         <div class="error-handler" *ngIf="!registerForm.controls['username'].value || registerForm.controls['username'].hasError('minlength')">
                             Your username must be at least 6 characters
                         </div>
                     </div>
                     <input type="text" class="sign-in-input" placeholder="Password" formControlName="password" minlength="8" type="password">
 
-                <div class="error-container" >
+                <div class="error-container" *ngIf="registerForm.controls['password'].touched && !registerForm.controls['password'].valid">
                     <div class="error-handler" *ngIf="!registerForm.controls['password'].value || registerForm.controls['password'].hasError('minlength')">
                         Your password must ba at least 8 characters
                     </div>
@@ -37,7 +37,11 @@
 
 
                     <input type="text" class="sign-in-input" placeholder="Confirm password" formControlName="userRePassword" type="password">
-
+                    <div class="error-container" *ngIf="registerForm.controls['userRePassword'].touched && !registerForm.controls['userRePassword'].valid">
+                        <div class="error-handler" *ngIf="registerForm.controls['userRePassword'].value !== registerForm.controls['password'].value">
+                            Your passwords does not match
+                        </div>
+                    </div>
                     
 
                     <div class="terms-agree">
@@ -45,14 +49,14 @@
                             <input type="checkbox" class="terms-checkbox" formControlName="userTerms">
                             <p class="form-text">I have read the <b><u>Terms and Conditions</u></b></p>
                         </div>
-                        <div class="error-container" >
+                        <div class="error-container" *ngIf="registerForm.controls['userTerms'].touched && !registerForm.controls['userTerms'].valid">
                             <div class="error-handler" *ngIf="!registerForm.controls['userTerms'].value">
                                 You shoud read and agree with our terms and conditions
                             </div>
                         </div>
                         
                     </div>
-                    <button type="submit" mat-stroked-button (submit)="checkValid()" [disabled]="!registerForm.valid">SIGN UP NOW</button>
+                    <button type="submit" mat-stroked-button (submit)="registerUser(registerForm)" [disabled]="!registerForm.valid">SIGN UP NOW</button>
                 </form>
             </div>
         </div>

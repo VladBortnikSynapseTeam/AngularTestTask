@@ -9,16 +9,16 @@
                     <p class="form-header">Sign in to Synapse Internship</p>
                     <p class="form-text">Sign in our platform</p>
                 </div>
-                <form action="GET" [formGroup]="loginForm" (submit)="checkValid(loginForm)">
+                <form action="GET" [formGroup]="loginForm" (submit)="loginUser(loginForm)">
                     <input type="text" class="sign-in-input" placeholder="Username" formControlName="username">
-                    <div class="error-container">
+                    <div class="error-container" *ngIf="loginForm.controls['username'].touched && !loginForm.controls['username'].valid">
                         <div class="error-handler" *ngIf="!loginForm.controls['username'].value || loginForm.controls['username'].hasError('minlength')">
                             Your username must be at least 6 characters
                         </div>
                     </div>
                     
                     <input type="text" class="sign-in-input" placeholder="Password" formControlName="password" type="password">
-                    <div class="error-container" >
+                    <div class="error-container" *ngIf="loginForm.controls['password'].touched && !loginForm.controls['password'].valid" >
                         <div class="error-handler" *ngIf="!loginForm.controls['password'].value || loginForm.controls['password'].hasError('minlength')">
                             Your password must ba at least 8 characters
                         </div>
@@ -32,7 +32,12 @@
                             Your character must include a special character
                         </div>
                     </div>  
-                    <button mat-stroked-button  (submit)="checkValid(loginForm)" [disabled]="!loginForm.valid">SIGN IN</button>
+                    <button mat-stroked-button  (submit)="loginUser(loginForm)" [disabled]="!loginForm.valid">SIGN IN</button>
+                    <div class="error-container" *ngIf="!successLogin">
+                        <div class="error-handler">
+                            Password or name are not found
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

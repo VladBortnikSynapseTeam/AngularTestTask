@@ -1,8 +1,9 @@
 
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {  FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { CustomValidators } from 'src/app/core/validators/custom-validators';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -10,7 +11,7 @@ import { CustomValidators } from 'src/app/core/validators/custom-validators';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup = new FormGroup({
-    username: new FormControl("",Validators.minLength(6)),
+    username: new FormControl("",[Validators.minLength(6), Validators.required]),
     password: new FormControl("",[
     Validators.required,
     CustomValidators.patternValidator(/[a-zA-Z]/,{noAlphabeticCharacters:true}),
@@ -27,14 +28,17 @@ export class RegisterComponent implements OnInit {
     ]),
     userTerms: new FormControl(false, Validators.required)
   });
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
   registerUser(formControl: any):void{
-    
-  }
-  checkValid(){
+    let data = formControl.value;
+    this.auth.registerUser(data.username,data.password).subscribe((res) => {
+      console.log(res);
+      localStorage.setItem("userAccessToken",res.token);
+      this.router.navigate(['/products/list'])
+    })
     
   }
 }

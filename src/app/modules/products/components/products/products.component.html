@@ -1,0 +1,18 @@
+<div class="list-item">
+    <div class="pd-name-dscr">
+        <span class="list-header list-title">Product Name</span>
+        <span class="list-header list-text">Descriptions</span>
+    </div>
+    <span class="list-header">Actions</span>
+</div>
+<mat-divider></mat-divider>
+<div class="list-items" *ngFor="let item of productList; let i = index">
+    <div class="list-item">
+        <div class="pd-name-dscr">
+            <span class="list-title">{{item.title}}</span>
+            <span class="list-text">{{item.text}}</span>
+        </div>
+        <span><button mat-stroked-button class="list-item-btn" [routerLink]="['/products/list', i+1]">Open</button></span>
+    </div>
+    <mat-divider></mat-divider>
+</div>

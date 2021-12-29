@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CustomValidators } from 'src/app/core/validators/custom-validators';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  successLogin: boolean = true;
   loginForm: FormGroup = new FormGroup({
     username: new FormControl("",Validators.minLength(6)),
     password: new FormControl("",[
@@ -18,15 +20,20 @@ export class LoginComponent implements OnInit {
     Validators.minLength(8)
     ])
   })
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private router: Router) { }
   
   ngOnInit(): void {
   }
-  loginUser(){
-   
-  }
-  checkValid(loginForm: FormGroup){
+  loginUser(loginForm: FormGroup){
     const data = loginForm.value;
-    console.log(data)
+    this.auth.loginUser(data).subscribe(res =>{
+      if(res.success == false){
+        this.successLogin = false;
+      }else{
+        console.log('successlogin')
+        localStorage.setItem("userAccessToken",res.token);
+        this.router.navigate(['/products/list'])
+      }
+    })
   }
 }
