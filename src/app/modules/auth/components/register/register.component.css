@@ -19,6 +19,10 @@
   color: red;
   font-size: 10px;
 }
+.register-btn {
+  background-color: #0d7185;
+  height: 40px;
+}
 .login-pic {
   width: 473px;
   height: 100%;
@@ -54,6 +58,8 @@
   line-height: 17px;
   color: #9ea0a5;
   text-align: right;
+  margin: 0px;
+  vertical-align: middle;
 }
 .go-back {
   font-family: Montserrat;

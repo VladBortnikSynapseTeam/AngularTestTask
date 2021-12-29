@@ -32,7 +32,7 @@
                             Your character must include a special character
                         </div>
                     </div>  
-                    <button mat-stroked-button  (submit)="loginUser(loginForm)" [disabled]="!loginForm.valid">SIGN IN</button>
+                    <button mat-stroked-button class="login-btn"  (submit)="loginUser(loginForm)" [disabled]="!loginForm.valid">SIGN IN</button>
                     <div class="error-container" *ngIf="!successLogin">
                         <div class="error-handler">
                             Password or name are not found
