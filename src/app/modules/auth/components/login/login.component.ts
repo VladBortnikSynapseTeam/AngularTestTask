@@ -5,12 +5,15 @@ import { CustomValidators } from 'src/app/core/validators/custom-validators';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit, OnDestroy {
+
   successLogin: boolean = true;
   destroy$: Subject<boolean> = new Subject<boolean>();
   loginForm: FormGroup;
@@ -28,6 +31,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       ])
     })
   }
+
   loginUser(loginForm: FormGroup){
     if(loginForm.valid){
       const data = loginForm.value;
@@ -42,6 +46,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       })
     }
   }
+  
   ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();

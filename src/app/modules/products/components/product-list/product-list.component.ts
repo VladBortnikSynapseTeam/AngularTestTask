@@ -11,7 +11,9 @@ export class ProductComponent implements OnInit {
       console.log("product list works");
       
   }
+
   removeToken(){
     localStorage.clear();
   }
+  
 }

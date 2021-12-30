@@ -6,12 +6,15 @@ import { IPostReview } from 'src/app/core/interfaces/post/post-review.model';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { forkJoin } from 'rxjs';
+
+
 @Component({
   selector: 'app-product-page',
   templateUrl: './product-page.component.html',
   styleUrls: ['./product-page.component.css']
 })
 export class ProductPageComponent implements OnInit,OnDestroy {
+
   productName: string = "Loading..."
   productTitle: string = "Loading...  "
   destroy$: Subject<boolean> = new Subject<boolean>();
@@ -21,15 +24,19 @@ export class ProductPageComponent implements OnInit,OnDestroy {
     text: new FormControl(),
     rate: new FormControl()
   })
+
   constructor(private route: ActivatedRoute, private productServie: ProductService) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
+    this.route.params
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(params => {
       this.postID = params["id"];
       this.getProductItem(params);
     });
     
   }
+
   getProductItem(params: any){
     forkJoin( [
      this.productServie.getProducts(),
@@ -47,6 +54,7 @@ export class ProductPageComponent implements OnInit,OnDestroy {
     },(err)=>{console.log(err);
     })
   }
+
   postRate(rateForm: IPostReview){
     let data = {
       rate: +rateForm.rate || 0,
@@ -56,11 +64,10 @@ export class ProductPageComponent implements OnInit,OnDestroy {
         username: "TestUser"
       }
     }
-    console.log(data); 
-    //this.productServie.postRate(data,this.postID).subscribe(data => {console.log(data);})
     this.reviewsArray.unshift(data);
     this.rateForm.reset();
   }
+  
   ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();

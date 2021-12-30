@@ -6,12 +6,14 @@ import { CustomValidators } from 'src/app/core/validators/custom-validators';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit, OnDestroy {
+  
   userTerms: false;
   destroy$: Subject<boolean> = new Subject<boolean>();
   registerForm: FormGroup;
@@ -38,18 +40,21 @@ export class RegisterComponent implements OnInit, OnDestroy {
       userTerms: new FormControl(false, [Validators.required])
     });
   }
+
   registerUser(formControl: any){
+
     if(formControl.valid && formControl.value.userTerms == true){
       let data = formControl.value;
-      this.auth.registerUser(data.username,data.password).pipe(takeUntil(this.destroy$)).subscribe((res) => {
+      this.auth.registerUser(data.username,data.password)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((res) => {
         console.log(res);
         localStorage.setItem("userAccessToken",res.token);
         this.router.navigate(['/products/list'])
       })
-    }else{
-
     }
   }
+
   ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();

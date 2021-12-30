@@ -6,7 +6,7 @@ import { SharedMaterialModuleModule } from '../shared-material-module/shared-mat
 import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from 'src/app/services/auth.service';
-import { AuthRoutingModule } from './auth-routing/auth-routing.module';
+import { AuthRoutingModule } from './auth-routing.module';
 
 @NgModule({
   declarations: [LoginComponent,RegisterComponent],

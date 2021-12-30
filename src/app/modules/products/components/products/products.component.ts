@@ -3,6 +3,8 @@ import { IProduct } from 'src/app/core/interfaces/product/product.model';
 import { ProductService } from 'src/app/services/product.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -16,12 +18,15 @@ export class ProductListComponent implements OnInit,OnDestroy {
   constructor(private productsService: ProductService) { }
 
   ngOnInit(): void {
-    this.productsService.getProducts().pipe(takeUntil(this.destroy$)).subscribe(products => {
+    this.productsService.getProducts()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(products => {
       console.log(products);
       this.productList = products;
       this.dataSource = this.productList;
     });
   }
+  
   ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
