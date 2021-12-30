@@ -49,14 +49,14 @@
                             <input type="checkbox" class="terms-checkbox" formControlName="userTerms">
                             <p class="form-text">I have read the <b><u>Terms and Conditions</u></b></p>
                         </div>
-                        <div class="error-container" *ngIf="registerForm.controls['userTerms'].touched && !registerForm.controls['userTerms'].valid">
-                            <div class="error-handler" *ngIf="!registerForm.controls['userTerms'].value">
+                        <div class="error-container" *ngIf="registerForm.controls['userTerms'].value == false && registerForm.controls['userTerms'].touched">
+                            <div class="error-handler" >
                                 You shoud read and agree with our terms and conditions
                             </div>
                         </div>
                         
                     </div>
-                    <button class="register-btn" type="submit" mat-stroked-button (submit)="registerUser(registerForm)" [disabled]="!registerForm.valid">SIGN UP NOW</button>
+                    <button class="register-btn" type="submit" mat-stroked-button (submit)="registerUser(registerForm)" [disabled]="!registerForm.valid || registerForm.value.userTerms === false">SIGN UP NOW</button>
                 </form>
             </div>
         </div>

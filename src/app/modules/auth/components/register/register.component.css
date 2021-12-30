@@ -22,6 +22,7 @@
 .register-btn {
   background-color: #0d7185;
   height: 40px;
+  color: white;
 }
 .login-pic {
   width: 473px;
@@ -29,14 +30,13 @@
   background-image: url("../../../../../assets/img/login-background.png");
 }
 .login-form-container {
-  width: 437px;
+  width: 493px;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-right: 50px;
-  padding-top: 50px;
   gap: 70px;
+  margin-top: 55px;
 }
 
 .sign-up-container {

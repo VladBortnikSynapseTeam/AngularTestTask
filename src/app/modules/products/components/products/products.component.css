@@ -9,8 +9,19 @@
   gap: 144px;
 }
 .list-header {
-  font-weight: bold;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: black;
+  margin-right: 10px;
 }
+table {
+  width: 100%;
+  box-shadow: none;
+}
+
 .list-title,
 .list-text {
   width: 150px;
@@ -20,4 +31,15 @@
   height: 40px;
   background-color: #0d7185;
   color: white;
+  margin: 10px 0px 10px 0px;
+}
+.mat-column-productName {
+  width: 300px;
+}
+.mat-header-cell:last-of-type {
+  text-align: right;
+}
+.mat-cell:last-of-type {
+  display: flex;
+  justify-content: flex-end;
 }

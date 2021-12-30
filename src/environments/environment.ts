@@ -4,9 +4,7 @@
 
 export const environment = {
   production: false,
-  login: 'http://smktesting.herokuapp.com/api/login/',
-  register: 'http://smktesting.herokuapp.com/api/register/',
-  getProducts: 'http://smktesting.herokuapp.com/api/products',
+  apiURL: 'http://smktesting.herokuapp.com/api'
 };
 
 /*

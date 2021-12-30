@@ -1,12 +1,14 @@
 <div class="product-container">
     <div class="portlet">
         <div class="portlet-image"></div>
-        <div class="product-title">{{productName}}</div>
-        <div class="product-text">{{productTitle}}</div>
+        <div class="portlet-text">
+            <div class="product-title">{{productName}}</div>
+            <div class="product-text">{{productTitle}}</div>
+        </div>
     </div>
     <div class="review-container">
         <div class="your-review">
-            <b>Your review {{postID}}</b>
+            <b>Your review</b>
             <mat-divider></mat-divider>
             <form  action="GET" class="review-form" [formGroup]="rateForm" >
                 <textarea  class="review-textarea" placeholder="Type your review..." formControlName="text"></textarea>
@@ -31,50 +33,52 @@
         </div>
         <div class="user-reviews-container">
             <div class="user-review" *ngFor=" let userRate of reviewsArray">
-                <span>{{userRate.created_by.username}} at {{userRate.created_at | date:"hh:ss dd MMM y"}}</span>
-                <div class="user-rate" *ngIf="userRate.rate === 0">
+                <span> <b class="username">{{userRate.created_by.username}}</b> at {{userRate.created_at | date:"hh:ss dd MMM y"}}</span>
+               <div class="star-cont" [ngSwitch]="userRate.rate">
+                <ng-template ngSwitchCase="0">
                     <div class="star-rate-unchecked"></div>
                     <div class="star-rate-unchecked"></div>
                     <div class="star-rate-unchecked"></div>
                     <div class="star-rate-unchecked"></div>
                     <div class="star-rate-unchecked"></div>
-                </div>
-                <div class="user-rate" *ngIf="userRate.rate === 1">
+                </ng-template>
+                <ng-template ngSwitchCase="1">
                     <div class="star-rate-checked"></div>
                     <div class="star-rate-unchecked"></div>
                     <div class="star-rate-unchecked"></div>
                     <div class="star-rate-unchecked"></div>
                     <div class="star-rate-unchecked"></div>
-                </div>
-                <div class="user-rate" *ngIf="userRate.rate === 2">
+                </ng-template>
+                <ng-template ngSwitchCase="2">
                     <div class="star-rate-checked"></div>
                     <div class="star-rate-checked"></div>
                     <div class="star-rate-unchecked"></div>
                     <div class="star-rate-unchecked"></div>
                     <div class="star-rate-unchecked"></div>
-                </div>
-                <div class="user-rate" *ngIf="userRate.rate === 3">
+                </ng-template>
+                <ng-template ngSwitchCase="3">
                     <div class="star-rate-checked"></div>
                     <div class="star-rate-checked"></div>
                     <div class="star-rate-checked"></div>
                     <div class="star-rate-unchecked"></div>
                     <div class="star-rate-unchecked"></div>
-                </div>
-                <div class="user-rate" *ngIf="userRate.rate === 4">
+                </ng-template>
+                <ng-template ngSwitchCase="4">
                     <div class="star-rate-checked"></div>
                     <div class="star-rate-checked"></div>
                     <div class="star-rate-checked"></div>
                     <div class="star-rate-checked"></div>
                     <div class="star-rate-unchecked"></div>
-                </div>
-                <div class="user-rate" *ngIf="userRate.rate === 5">
+                </ng-template>
+                <ng-template ngSwitchCase="5">
                     <div class="star-rate-checked"></div>
                     <div class="star-rate-checked"></div>
                     <div class="star-rate-checked"></div>
                     <div class="star-rate-checked"></div>
                     <div class="star-rate-checked"></div>
-                </div>
-                <span>{{userRate.text}}</span>
+                </ng-template>
+               </div>
+                <span> <i>{{userRate.text}}</i></span>
             </div>
         </div>
     </div>

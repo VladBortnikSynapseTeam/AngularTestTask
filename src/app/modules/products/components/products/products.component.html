@@ -1,18 +1,19 @@
-<div class="list-item">
-    <div class="pd-name-dscr">
-        <span class="list-header list-title">Product Name</span>
-        <span class="list-header list-text">Descriptions</span>
-    </div>
-    <span class="list-header">Actions</span>
-</div>
-<mat-divider></mat-divider>
-<div class="list-items" *ngFor="let item of productList; let i = index">
-    <div class="list-item">
-        <div class="pd-name-dscr">
-            <span class="list-title">{{item.title}}</span>
-            <span class="list-text">{{item.text}}</span>
-        </div>
-        <span><button mat-stroked-button class="list-item-btn" [routerLink]="['/products/list', i+1]">Open</button></span>
-    </div>
-    <mat-divider></mat-divider>
-</div>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="productName">
+        <th mat-header-cell *matHeaderCellDef > <b class="list-header">Product Name</b> </th>
+        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef  > <b class="list-header">Description</b> </th>
+        <td mat-cell *matCellDef="let element"> {{element.text}} </td>
+      </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef > <b class="list-header">Actions</b>  </th>
+      <td mat-cell *matCellDef="let element"> <button class="list-item-btn" mat-button [routerLink]="['/products/list', element.id ]">OPEN</button> </td>
+    </ng-container>
+  
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>

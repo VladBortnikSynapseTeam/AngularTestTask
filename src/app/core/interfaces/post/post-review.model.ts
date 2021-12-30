@@ -1,22 +1,4 @@
-export interface IUserAuthRequest {
-    username: string;
-    password: string;
-}
-export interface IuserAuthResponse{
-    authToken: boolean;
-    username: string;
-    password: string;
-}
-export interface ITokenResponse{
-    success: boolean;
-    token: string
-}
-export interface IProduct{
- id: number;
- title: string;
- image: string;
-text: string;
-}
+
 export interface IPostReview{
     rate: number;
     text: string;
